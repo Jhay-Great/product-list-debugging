@@ -3,9 +3,9 @@
     <h1>Desserts</h1>
 
     <div class="desserts-container">
-      <app-product-card />
-      <app-product-card />
-      <app-product-card />
+      @for(dessert of desserts; track dessert.name) {
+      <app-product-card [dessert]="dessert" />
+      }
     </div>
 
   </section>

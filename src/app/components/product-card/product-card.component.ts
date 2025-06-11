@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AddToCartComponent } from '../add-to-cart/add-to-cart.component';
+import { Dessert } from '../../../models/dessert';
 
 @Component({
   selector: 'app-product-card',
@@ -7,4 +8,6 @@ import { AddToCartComponent } from '../add-to-cart/add-to-cart.component';
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss',
 })
-export class ProductCardComponent {}
+export class ProductCardComponent {
+  @Input({ required: true }) dessert!: Dessert;
+}
