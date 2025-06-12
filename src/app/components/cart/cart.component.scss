@@ -91,13 +91,7 @@
       }
     }
     .confirm-order {
-      background-color: $red !important;
-      width: 100%;
-      color: white;
-      padding: 16px 24px;
-      min-height: 53px;
-      @include TextPreset3;
-      border-radius: 999px;
+      @include actionButton;
     }
 
     .empty-cart-content {
