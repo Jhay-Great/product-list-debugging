@@ -17,7 +17,7 @@
   .content {
     width: 100%;
     height: fit-content;
-    @include flex(column, center, center);
+    @include flex(column);
 
     .cart-item {
       @include flex(row, space-between, center);
@@ -74,7 +74,7 @@
         height: 20px;
         background-color: transparent;
         outline: none;
-        border: 2px solid $rose-500;
+        border: 1px solid $rose-400;
         border-radius: 50%;
         cursor: pointer;
       }
