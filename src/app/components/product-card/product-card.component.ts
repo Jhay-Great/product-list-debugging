@@ -18,8 +18,7 @@ export class ProductCardComponent {
   onAddCardItem(quantity: number) {
     if (quantity === 0) {
       this.cartService.deleteCartItem(this.dessert.name);
-    }
-    if (quantity > 1) {
+    } else if (quantity > 1) {
       this.cartService.updateCardItem(this.dessert.name, quantity);
     } else {
       const quantityNumber = quantity;
@@ -34,7 +33,7 @@ export class ProductCardComponent {
         quantity: quantityNumber,
       };
 
-      this.cartService.addToCart(cartItem);
+      this.cartService.addToCart(cartItem, this.dessert.name);
     }
   }
 }

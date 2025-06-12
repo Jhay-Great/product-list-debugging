@@ -11,24 +11,21 @@ import { CartItem } from '../../../models/cartItem';
 export class CartComponent implements OnInit {
   cartService = inject(CartService);
   cartItems: CartItem[] = [];
-  totalPrice: number = 0;
+  totalItems: number = 0;
 
-  calculateTotalPrice(): number {
-    return this.cartItems.reduce(
-      (acc, item) => acc + item.price * item.quantity,
-      0
-    );
+  calculateTotalItem(): number {
+    return this.cartItems.reduce((acc, item) => acc + item.quantity, 0);
   }
 
   ngOnInit(): void {
-    this.cartService.getCartItems().subscribe((items) => {
+    this.cartService.cartItems$.subscribe((items) => {
       this.cartItems = items;
-      this.totalPrice = this.calculateTotalPrice();
+      this.totalItems = this.calculateTotalItem();
     });
   }
 
   onDeleteItem(item: string) {
     this.cartService.deleteCartItem(item);
-    this.totalPrice = this.calculateTotalPrice();
+    this.totalItems = this.calculateTotalItem();
   }
 }
