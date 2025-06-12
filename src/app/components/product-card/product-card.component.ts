@@ -10,4 +10,11 @@ import { Dessert } from '../../../models/dessert';
 })
 export class ProductCardComponent {
   @Input({ required: true }) dessert!: Dessert;
+
+  onAddCardItem(quantity: number) {
+    const quantityNumber = Number(quantity);
+    const dessertName = this.dessert.name;
+    const dessertPrice = quantity * this.dessert.price;
+    const dessertImage = this.dessert.image.thumbnail;
+  }
 }
