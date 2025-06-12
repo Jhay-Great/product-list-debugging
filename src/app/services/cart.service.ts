@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CartItem } from '../../models/cartItem';
-import { of, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, filter } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +23,18 @@ export class CartService {
 
     this.cartItemsSubject.next(currentItems);
   }
-  updateCardItem(name: string, quantity: number) {}
-  deleteCartItem(name: string) {}
+  updateCardItem(name: string, quantity: number) {
+    const currentItems = this.cartItemsSubject.getValue();
+    const itemIndex = currentItems.findIndex((item) => item.name === name);
+    if (itemIndex !== -1) {
+      currentItems[itemIndex].quantity = quantity;
+      this.cartItemsSubject.next(currentItems);
+    }
+  }
+  deleteCartItem(name: string) {
+    const currentItems = this.cartItemsSubject.getValue();
+    const updatedItems = currentItems.filter((item) => item.name !== name);
+
+    this.cartItemsSubject.next(updatedItems);
+  }
 }
