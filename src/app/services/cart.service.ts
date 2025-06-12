@@ -6,17 +6,8 @@ import { of, BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class CartService {
-  // private cartItems: CartItem[] = [];
-
   //making cartItems an obseravble
-  private cartItemsSubject = new BehaviorSubject<CartItem[]>([
-    {
-      name: 'cheese',
-      price: 10,
-      quantity: 1,
-      image: 'images/image-waffle-thumbnail.jpg',
-    },
-  ]);
+  private cartItemsSubject = new BehaviorSubject<CartItem[]>([]);
   cartItems$ = this.cartItemsSubject.asObservable();
 
   constructor() {}
@@ -25,5 +16,13 @@ export class CartService {
     return this.cartItems$;
   }
 
-  addToCart(item: CartItem): void {}
+  addToCart(item: CartItem): void {
+    const currentItems = this.cartItemsSubject.getValue();
+
+    currentItems.push(item);
+
+    this.cartItemsSubject.next(currentItems);
+  }
+  updateCardItem(name: string, quantity: number) {}
+  deleteCartItem(name: string) {}
 }
