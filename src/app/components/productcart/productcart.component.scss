@@ -1,0 +1,165 @@
+@use 'mixins' as *;
+@use 'variables' as *;
+
+// cart section
+.cart {
+  @include flex(column);
+  width: 300px;
+  height: fit-content;
+  flex: 1 0 380px;
+  padding: 1rem;
+  background-color: $white;
+  border-radius: 12px;
+  gap:24px;
+   p{
+      @include TextPreset4;
+      color: $rose-900;
+    }
+
+  h2 {
+    @include TextPreset2;
+    color: $red;
+  }
+.name{
+  @include flex(column);
+  gap:0.5rem;
+  h3{
+    @include TextPreset4Bold;
+  }
+  .details{
+    @include flex(row);
+    gap:0.5rem;
+    .quantity{
+      @include TextPreset4Bold;
+      color: $red;
+    }
+    p{
+       color: $rose-500;
+    }
+   .price{
+    @include TextPreset4;
+   }
+   .totalquantity{
+    @include TextPreset4Bold;
+   }
+  }
+
+}
+  .product{
+    @include flex(row,space-between,center);
+    padding-bottom: 1rem;
+    border-bottom: 1px solid $rose-100;
+  }
+
+  .content {
+    width: 100%;
+    height: fit-content;
+    @include flex(column);
+    gap:1rem;
+    .empty-cart-content {
+      @include flex(column, center, center);
+      width: 100%;
+      
+      p {
+        @include TextPreset4Bold;
+        color: $rose-500;
+      }
+    }
+    button{
+      border: 1px solid $rose-400;
+      width:20px;
+      height: 20px;
+      display: grid;
+      place-content: center;
+      border-radius: 50%;
+      .close{
+        fill: $rose-400;
+      }
+      &:hover{
+        border-color: $rose-900;
+        .close{
+        fill: $rose-900;
+      }
+      }
+    }
+  }
+  .carbon{
+    @include flex(row,center);
+    gap:0.5rem;
+    background-color: $rose-50;
+    border-radius: 0.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  .order{
+   .bold{
+    @include TextPreset4Bold;
+   }
+    h2{
+      @include TextPreset2;
+      color: $rose-900;
+    }
+    @include flex(row,space-between,center);
+
+  }
+  .ord-btn{
+    width:inherit;
+    border: none;
+    background-color: $red;
+    @include TextPreset3;
+    color: $white;
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    text-align: center;
+    border-radius: 50px;
+      cursor: pointer;
+        &:hover {
+        color: $white;
+        border-color: $red;
+        transition: all 300ms ease-in-out;
+      }
+  }
+
+}
+    //   .cart button {
+    //   @include flex(row, flex-start, stretch, 0.5rem);
+    //   padding: 0.5rem 1rem;
+    //   border: 1px solid $rose-400;
+    //   background-color: $white;
+    //   border-radius: 50px;
+    //   width: fit-content;
+    //   margin: -1.2rem auto;
+     
+
+    //   &:hover {
+    //     color: $white;
+    //     border-color: $red;
+    //     transition: all 300ms ease-in-out;
+    //   }
+
+    //   p {
+    //     @include TextPreset4Bold;
+    //   }
+    // }
+.confirmedmodal{
+  position: fixed;
+  width:100%;
+  height: 100vh;
+  top:0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba($color: #000000, $alpha: 0.5);
+  .box{
+    width:592px;
+  }
+  .conftop{
+    
+  }
+}
+
+@media(max-width:768px){
+  .cart{
+    width:100%;
+  }
+}
