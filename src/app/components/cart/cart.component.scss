@@ -1,0 +1,115 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+// cart section
+.cart {
+  width: 384px;
+  height: fit-content;
+  flex: 1 0 380px;
+  padding: 1rem;
+  background-color: $white;
+  @include flex(column, flex-start, stretch, 24px);
+
+  @include breakpoint(768px) {
+    width: 100%;
+  }
+
+  @include breakpoint(480px) {
+    width: 100%;
+  }
+
+  h2 {
+    @include TextPreset2;
+    color: $red;
+  }
+
+  .content {
+    width: 100%;
+    height: fit-content;
+    @include flex(column, flex-start, stretch, 24px);
+
+    .cart-item {
+      @include flex(row, space-between, center);
+      width: 100%;
+      padding: 0.5rem;
+      border-bottom: 1px solid $rose-100;
+
+      .item-details {
+        @include flex(column, start, stretch, 8px);
+        width: 70%;
+
+        .dessert-name {
+          @include TextPreset4Bold;
+          color: $rose-900;
+          text-align: left;
+        }
+        .price-info {
+          @include flex(row, start, center, 8px);
+
+          .quantity {
+            @include TextPreset4;
+            @include TextPreset4Bold;
+            color: $red;
+          }
+          .price {
+            color: $rose-500;
+            @include TextPreset4;
+          }
+          .item-amount {
+            color: $rose-500;
+            @include TextPreset4Bold;
+          }
+        }
+      }
+
+      .delete-item {
+        @include flex(column, center, center);
+        width: 20px;
+        height: 20px;
+        background-color: transparent;
+        outline: none;
+        border: 1px solid $rose-400;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+    }
+
+    .total-price {
+      @include flex(row, space-between, center);
+      width: 100%;
+      padding: 0.5rem;
+      @include TextPreset4;
+      color: $rose-900;
+
+      .total-price-value {
+        @include TextPreset2;
+      }
+    }
+    .carbon-neutral {
+      @include flex(row, center, center, 4px);
+      padding: 16px;
+      @include TextPreset4;
+      min-height: 52px;
+      width: 100%;
+      color: $rose-900;
+      background-color: $rose-50;
+
+      strong {
+        @include TextPreset4Bold;
+      }
+    }
+    .confirm-order {
+      @include actionButton;
+    }
+
+    .empty-cart-content {
+      @include flex(column, center, center);
+      width: 100%;
+
+      p {
+        @include TextPreset4Bold;
+        color: $rose-500;
+      }
+    }
+  }
+}
