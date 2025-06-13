@@ -1,33 +1,27 @@
-import { Component } from '@angular/core';
-import desseretData from '../../public/data.json';
-import { AddToCartComponent } from "./components/add-to-cart/add-to-cart.component";
+import { Component, OnInit } from '@angular/core';
+import { DessertService } from './services/dessert.service';
+import { Dessert } from './models/desserts.model';
+import { CommonModule } from '@angular/common';
+import { ProductListComponent } from './components/product-list/product-list.component';
+import { CartComponent } from './components/cart/cart.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
-});
+  styleUrls: ['./app.component.scss'],
+  imports: [CommonModule, ProductListComponent, CartComponent]
+}) // Bug Fix: Component decorator should be put before the class declaration
 
-// interface
-interface Dessert {
-  image: DessertImages;
-  name: string;
-  category: string;
-  price: number;
-};
-
-interface DessertImages {
-  thumbnail: string;
-  mobile: string;
-  tablet: string;
-  desktop: string;
-};
-
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Product list';
-  desserts:Dessert[] | null = null;
+  desserts:Dessert[] = []; 
 
-  constructor() {
-    this.desserts = desseretData;
-  };
+  constructor(private dessertService: DessertService) {}
+
+  ngOnInit(): void {
+    this.dessertService.getDesserts().subscribe((data) => {
+      this.desserts = data;
+    });
+  }
+
 };
